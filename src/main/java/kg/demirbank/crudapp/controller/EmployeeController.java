@@ -29,33 +29,33 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @PostMapping("/saved")
+    @PostMapping()
     @ApiOperation(value = "Add new employee", response = Employee.class)
     public ResponseEntity<Employee> saveUser(@Valid @RequestBody Employee employee) {
         employeeService.save(employee);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("/findAll")
+    @GetMapping("/all")
     @ApiOperation(value = "Show all employees")
     public ResponseEntity<List<Employee>> listEmployee() {
         return new ResponseEntity<>(employeeService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/getById/{id}")
+    @GetMapping("/{id}")
     @ApiOperation(value = "Show employee by Id", response = Employee.class)
     public ResponseEntity<Employee> getOne(@PathVariable Long id) {
         return new ResponseEntity<>(employeeService.get(id),
                 HttpStatus.ACCEPTED);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     @ApiOperation(value = "Update employee by Id", response = Employee.class)
     public ResponseEntity<Employee> update(@Valid @RequestBody Employee employee, @PathVariable Long id) {
         return new ResponseEntity<>(employeeService.update(employee, id), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @ApiOperation(value = "Delete employee by Id", response = Employee.class)
     public ResponseEntity<Employee> delete(@PathVariable Long id) {
         employeeService.deleteById(id);
