@@ -14,17 +14,23 @@ export default class List extends Component {
     }
 
     componentDidMount() {
+        this.allEmployees();
+
+    }
+
+    allEmployees() {
         axios.get("http://localhost:9090/employee/all")
             .then(response => response.data)
             .then((data) => {
                 this.setState({employees: data});
             });
+
     }
 
     render() {
         return (
             <Card className="border border-dark bg-gray text-black">
-                <Card.Header><FontAwesomeIcon icon={faList} />
+                <Card.Header><FontAwesomeIcon icon={faList}/>
                     List Employee
                 </Card.Header>
                 <Card.Body>
@@ -41,10 +47,10 @@ export default class List extends Component {
                         </thead>
                         <tbody>
                         {
-                            this.state.employees.length == 0 ?
+                            this.state.employees.length === 0 ?
                                 <tr align="center">
                                     <td colSpan="6"> Employees Available</td>
-                                </tr>  :
+                                </tr> :
                                 this.state.employees.map((employee) => (
                                     <tr key={employee.id}>
                                         <td>{employee.name}</td>
@@ -54,12 +60,14 @@ export default class List extends Component {
                                         <td>{employee.phoneNumber}</td>
                                         <td>
                                             <ButtonGroup>
-                                                <Button size="sm" variant="outline-primary"><FontAwesomeIcon icon={faEdit} /></Button>{' '}
-                                                <Button size="sm" variant="outline-danger"><FontAwesomeIcon icon={faTrash} /></Button>{' '}
+                                                <Button size="sm" variant="outline-primary"><FontAwesomeIcon
+                                                    icon={faEdit}/></Button>{' '}
+                                                <Button size="sm" variant="outline-danger"><FontAwesomeIcon
+                                                    icon={faTrash}/></Button>{' '}
                                             </ButtonGroup>
                                         </td>
                                     </tr>
-                            ))
+                                ))
                         }
 
                         </tbody>
