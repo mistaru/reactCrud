@@ -1,11 +1,34 @@
-import React from "react";
+import React, {Component} from "react";
+import {Card, Table} from "react-bootstrap";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faList} from "@fortawesome/free-solid-svg-icons";
 
-class List extends React.Component {
+export default class List extends Component {
     render() {
         return (
-            <div className="text-dark">List</div>
+            <Card className="border border-dark bg-gray text-black">
+                <Card.Header><FontAwesomeIcon icon={faList} />
+                    List Employee
+                </Card.Header>
+                <Card.Body>
+                    <Table bordered hover striped variant="gray">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>SurName</th>
+                            <th>Birthday</th>
+                            <th>email</th>
+                            <th>Phone Number</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr align="center">
+                            <td colSpan="6">No Employees Available</td>
+                        </tr>
+                        </tbody>
+                    </Table>
+                </Card.Body>
+            </Card>
         )
     }
 }
-
-export default List;
