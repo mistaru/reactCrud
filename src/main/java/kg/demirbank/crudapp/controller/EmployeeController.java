@@ -49,10 +49,10 @@ public class EmployeeController {
                 HttpStatus.ACCEPTED);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping()
     @ApiOperation(value = "Update employee by Id", response = Employee.class)
-    public ResponseEntity<Employee> update(@Valid @RequestBody Employee employee, @PathVariable Long id) {
-        return new ResponseEntity<>(employeeService.update(employee, id), HttpStatus.OK);
+    public ResponseEntity<Employee> update(@Valid @RequestBody Employee employee) {
+        return new ResponseEntity<>(employeeService.update(employee), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

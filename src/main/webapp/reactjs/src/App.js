@@ -21,6 +21,9 @@ function App() {
                         <Switch>
                             <Route path="/" exact component={Welcome}/>
                             <Route path="/employee" exact component={Employee}/>
+
+                            <Route path="/employee/edit/:id" exact component={Employee}/>
+
                             <Route path="/employee/all" exact component={List}/>
                         </Switch>
                     </Col>

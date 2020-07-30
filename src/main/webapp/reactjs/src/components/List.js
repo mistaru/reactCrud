@@ -1,9 +1,10 @@
 import React, {Component} from "react";
-import {Card, Table, ButtonGroup, Button} from "react-bootstrap";
+import {Card, Table, ButtonGroup, Button, Nav} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit, faList, faTrash} from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
 import MyToast from "./MyToast";
+import {Link} from "react-router-dom";
 
 export default class List extends Component {
 
@@ -25,7 +26,6 @@ export default class List extends Component {
             .then((data) => {
                 this.setState({employees: data});
             });
-
     };
 
     deleteEmployee = (employeeId) => {
@@ -47,7 +47,7 @@ export default class List extends Component {
         return (
             <div>
                 <div style={{"display": this.state.show? "block" : "none"}}>
-                    <MyToast children={{show:this.state.show, message:"Deleted Successfully", type:"danger"}}/>
+                    <MyToast show = {this.state.show} message = {"Deleted Successfully"} type = {"danger"}/>
                 </div>
                 <Card className="border border-dark bg-gray text-black">
                     <Card.Header><FontAwesomeIcon icon={faList}/>
@@ -80,8 +80,7 @@ export default class List extends Component {
                                             <td>{employee.phoneNumber}</td>
                                             <td>
                                                 <ButtonGroup>
-                                                    <Button size="sm" variant="outline-primary"><FontAwesomeIcon
-                                                        icon={faEdit}/></Button>{' '}
+                                                    <Link to={"edit/" + employee.id} className="btn btn-sm btn-outline-primary"><FontAwesomeIcon icon={faEdit}/></Link>{' '}
                                                     <Button size="sm" variant="outline-danger" onClick={this.deleteEmployee.bind(this, employee.id)}><FontAwesomeIcon
                                                         icon={faTrash}/></Button>{' '}
                                                 </ButtonGroup>
@@ -95,7 +94,6 @@ export default class List extends Component {
                     </Card.Body>
                 </Card>
             </div>
-
         )
     }
 }

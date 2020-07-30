@@ -23,15 +23,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee update(Employee employee, Long id) {
-        Employee employee1 = employeeRepository.getOne(id);
-        employee1.setBirthday(employee.getBirthday());
-        employee1.setEmail(employee.getEmail());
-        employee1.setName(employee.getName());
-        employee1.setPhoneNumber(employee.getPhoneNumber());
-        employee1.setSurname(employee.getSurname());
-
-        return employeeRepository.save(employee1);
+    public Employee update(Employee employee) {
+        return employeeRepository.save(employee);
     }
 
     @Override
